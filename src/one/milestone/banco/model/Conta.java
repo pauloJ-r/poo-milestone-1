@@ -3,7 +3,7 @@ package one.milestone.banco.model;
 /*
  * Programação Orientada a Objetos
  * Milestone 1
- * Discente:
+ * Discente: Paulo Cabral da Silva Junior
  * 
  */
 public class Conta {
@@ -44,7 +44,7 @@ public class Conta {
      */
     public void depositar(float quantia) {
     	 if (quantia > 0) {
-             this.saldo += quantia;
+             saldo += quantia;
     	 } else {
     		 throw new IllegalArgumentException("Operação inválida");
     	 }
