@@ -11,12 +11,15 @@ public class Conta {
     private float saldo;
     private String dataAbertura;
     private boolean status;
-
     /*
      *  Complete o construtor atribuindo os argumentos 
      *  aos respectivos atributos de instância
      */
     public Conta(String numero, float saldo, String dataAbertura, boolean status) {
+    	this.numero = numero;
+    	this.dataAbertura = dataAbertura;
+    	this.saldo = saldo;
+        this.status = status; 
         
     }
 
@@ -26,7 +29,12 @@ public class Conta {
      * declare o statement na condição de verificação: throw new IllegalArgumentException("Operação inválida");
      */
     public void sacar(float quantia) {
-        
+    	if (quantia <= saldo) {
+            saldo -= quantia;
+            System.out.println("Saldo atual: " + saldo);
+        } else {
+            throw new IllegalArgumentException("Operação inválida");
+        }
     }
 
     /*
@@ -35,7 +43,11 @@ public class Conta {
      * declare o statement na condição de verificação: throw new IllegalArgumentException("Operação inválida");
      */
     public void depositar(float quantia) {
-        
+    	 if (quantia > 0) {
+             this.saldo += quantia;
+    	 } else {
+    		 throw new IllegalArgumentException("Operação inválida");
+    	 }
     }
 
     /*
@@ -45,8 +57,13 @@ public class Conta {
      * ou a conta destino esteja desativada, declare o statement na condição de verificação: throw new IllegalArgumentException("Operação inválida");
      */
     public void transferir(Conta destino, float quantia) {
-        
-    }
+    	if (quantia <= saldo && destino.status == true) {
+    		saldo -= quantia;
+    	    destino.saldo += quantia;
+    	}else {
+    		throw new IllegalArgumentException("Operação inválida");
+    	}
+    } 
 
     // Getters e Setters - Não alterar
     public String getNumero() {
